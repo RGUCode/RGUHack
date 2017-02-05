@@ -3,9 +3,13 @@ html {
 }
 
 #logo {
-  padding: 3em;
+  padding: 3rem;
 }
 
 .info-section {
   padding: 0.5rem 0;
+}
+
+#sponsors form .row {
+  margin-bottom: 0;
 }

@@ -2,10 +2,12 @@
 <html>
   <head>
     <title>RGUHack!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/main.css" />
   </head>
@@ -13,6 +15,7 @@
     <div class="navbar-fixed">
       <nav class="purple darken-3">
         <div class="nav-wrapper container">
+          <a class="brand-logo" href="#top">RGUHack</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#faq">FAQ</a></li>
@@ -31,7 +34,7 @@
       </nav>
     </div>
 
-    <div class="container">
+    <div class="container" id="top">
       <div>
         <div class="" id="logo">
           <img src="https://rguhack.uk/images/logov2.png" class="responsive-img" />
@@ -133,33 +136,35 @@
         <p>If you would like to be a sponsor of RGUHack 2017, leave your details below and a member of the RGUHack team will be in touch.</p>
 
         <div class="row">
-          <form class="col s12" action="/" method="POST">
+          <form class="col s12" action="/mail.php" method="POST">
             <div class="row">
-              <div class="input-field col s6">
+              <div class="input-field col s12 m6">
                 <input class="validate" type="text" name="first_name" required>
                 <label for="first_name">First Name</label>
               </div>
-              <div class="input-field col s6">
+              <div class="input-field col s12 m6">
                 <input class="validate" type="text" name="last_name">
                 <label for="last_name">Last Name</label>
               </div>
             </div>
-             <div class="row">
-              <div class="input-field col s12">
+            <div class="row">
+              <div class="input-field col s12 m6">
                 <input class="validate" type="text" name"job_title">
                 <label for="job_title">Job Title</label>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 m6">
                 <input class="validate" type="text" name="company_name" required>
                 <label for="company_name">Company Name</label>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 m6">
                 <input class="validate" type="email" name="email" required>
                 <label for="email">Email Address</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input class="validate" type="tel" name="telephone">
+                <label for="telephone">Telephone Number</label>
               </div>
             </div>
             <div class="row">
@@ -168,17 +173,67 @@
                 <label for="webite">Website URL</label>
               </div>
             </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input class="validate" type="tel" name="telephone">
-                <label for="telephone">Telephone Number</label>
-              </div>
-            </div>
             <button type="submit" class="waves-effect waves-light btn">Submit</a>
           </form>
         </div>
       </div>
     </section>
+
+    <footer class="page-footer purple darken-3" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col l4 s12">
+            <h5 class="white-text">RGUHack 2017</h5>
+            <p class="deep-purple-text text-lighten-3">
+              Brought to you by the <a class="white-text" href="http://www.comp.rgu.ac.uk" target="_blank">School of Computing Science and Digital Media</a>
+              in partnership with the <a class="white-text" href="http://rgucs.com" target="_blank">Computing Society</a>
+            </p>
+          </div>
+          <div class="col l7 offset-l1 s12">
+            <h5 class="white-text">Contact</h5>
+            <div class="row">
+              <div class="col s6">
+                <ul class="deep-purple-text text-lighten-3">
+                  <li>
+                    <i class="fa fa-fw fa-envelope"></i>
+                    <a class="white-text" href="mailto:compsoc@rguunion.co.uk">compsoc@rguunion.co.uk</a>
+                  </li>
+                  <li>
+                    <i class="fa fa-fw fa-facebook"></i>
+                    <a class="white-text" href="http://facebook.com/RGUComputingSociety" target="_blank">RGUComputingSociety</a>
+                  </li>
+                  <li>
+                    <i class="fa fa-fw fa-twitter"></i>
+                    <a class="white-text" href="http://twitter.com/RGU_CS" target="_blank">@RGU_CS</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col s6">
+                <ul class="deep-purple-text text-lighten-3">
+                  <li>
+                    <i class="fa fa-fw fa-envelope"></i>
+                    <a class="white-text" href="mailto:info@rguhack.uk">info@rguhack.uk</a>
+                  </li>
+                  <li>
+                    <i class="fa fa-fw fa-facebook"></i>
+                    <a class="white-text" href="http://facebook.com/RGUHack" target="_blank">RGUHack</a>
+                  </li>
+                  <li>
+                    <i class="fa fa-fw fa-twitter"></i>
+                    <a class="white-text" href="http://twitter.com/RGUHack" target="_blank">@RGUHack</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          Copyright &copy; 2017 &bull; RGUHack
+        </div>
+      </div>
+    </footer>
 
     <footer>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

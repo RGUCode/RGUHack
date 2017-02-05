@@ -13,3 +13,21 @@ html {
 #sponsors form .row {
   margin-bottom: 0;
 }
+
+.organise-logo {
+  padding: 1rem 0;
+}
+
+.organise-logo img:not(:last-child) {
+  margin-right: 2rem;
+}
+
+/* RGUHack Colours */
+.rguhack-navbar-color {
+  background-color: #5e266f;
+}
+
+.rguhack-faq-color {
+  background-color: #a27cb2;
+}
+

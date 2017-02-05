@@ -1,11 +1,12 @@
 <!doctype html>
 <html>
   <head>
-    <title>RGUHack</title>
+    <title>RGUHack!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/main.css" />
   </head>
   <body>
@@ -16,7 +17,10 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#contacts">Contacts</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+            <li><a href="https://twitter.com/RGUHack" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/RGUHack/" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="#faq">FAQ</a></li>
@@ -26,6 +30,7 @@
         </div>
       </nav>
     </div>
+
     <div class="container">
       <div>
         <div class="" id="logo">
@@ -62,6 +67,119 @@
         </div>
       </div>
     </div>
+
+    <section class="grey info-section" id="faq">
+      <div class="container">
+        <h2 class="white-text center-align">FAQ</h2>
+
+        <div class="row">
+          <div class="col m6 s12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">What is RGUHack?</span>
+                RGUHack is an all-inclusive, free event organised for students by students.
+                You will create teams with like minded people with a common aim; to create something awesome in just 24 hours.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Where will it be held?</span>
+                RGUHack will be held at Robert Gordon University in Aberdeen.
+                For the past two years it has been held in the famous 'bear pit' at the Sir Ian Wood Building.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Is the event beginner friendly?</span>
+                It is absolutely no problem if you have never attended a hackathon before.
+                You will most definitely not be the only one there.
+                The main purpose of this hackathon is to learn something new, have fun and see how other people work.
+              </div>
+            </div>
+          </div>
+          <div class="col m6 s12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">What is MLH?</span>
+                MLH or Major League Hacking is the official student hackathon league.
+                With their help we are able to organise this event and bring you some cool pieces of hardware, that you will be able to play with during the event.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Who can attend?</span>
+                You have to be a student currently in education.
+                However, there is no limit to how young or old you are!
+                You also don't have to be a computing student to come and contribute.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Can I sponsor the event?</span>
+                We would love to have you involved!
+                Please use the form below to register your interest in sponsoring the event.
+                The RGUHack team will be in touch with you.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sponsors" class="info-section">
+      <div class="container">
+        <h2 class="center-align">Sponsors</h2>
+
+        <p>If you would like to be a sponsor of RGUHack 2017, leave your details below and a member of the RGUHack team will be in touch.</p>
+
+        <div class="row">
+          <form class="col s12" action="/" method="POST">
+            <div class="row">
+              <div class="input-field col s6">
+                <input class="validate" type="text" name="first_name" required>
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input class="validate" type="text" name="last_name">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+             <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="text" name"job_title">
+                <label for="job_title">Job Title</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="text" name="company_name" required>
+                <label for="company_name">Company Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="email" name="email" required>
+                <label for="email">Email Address</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="url" name="website">
+                <label for="webite">Website URL</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="tel" name="telephone">
+                <label for="telephone">Telephone Number</label>
+              </div>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Submit</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>

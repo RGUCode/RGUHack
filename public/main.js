@@ -46,4 +46,23 @@ $(document).ready(function() {
 
   var deadline = '2017-02-10T18:00:00Z';
   initializeClock('clock', deadline);
+
+  $('#sponsors form').on('submit', function(e) {
+    e.preventDefault();
+
+    $form = $(this);
+
+    $.ajax({
+      url: $form.attr('action'),
+      method: $form.attr('method'),
+      data: $form.serialize()
+    }).done(function(data) {
+      var message = data.success ? 'Submitted form!' : 'Error submitting...';
+      Materialize.toast(message, 4000);
+
+      if (data.success) {
+        $form.find(':input').val('');
+      }
+    });
+  });
 });

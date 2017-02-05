@@ -15,20 +15,20 @@ class MainController extends Controller {
     $mail = $this->ci->mail;
 
     // Headers / To
-    $full_name = $body->first_name . ' ' . $body->last_name;
+    $full_name = $body['first_name'] . ' ' . $body['last_name'];
 
-    $mail->addReplyTo($body->email, $full_name);
+    $mail->addReplyTo($body['email'], $full_name);
     $mail->addAddress('info@rguhack.uk', 'RGUHack Team');
 
     // Content
-    $response = $this->ci->view->render($response, 'email.html', $body);
+    $response = $this->ci->view->render($response, 'email.phtml', $body);
 
-    $mail->isHMTL(true);
+    $mail->isHTML(true);
     $mail->Subject = 'Sponsorship Opportunity';
     $mail->Body = $response->getBody();
 
     return $response->withJson([
-      'success' => $mail->send()
+      'success' => $mail->send(),
     ]);
   }
 }

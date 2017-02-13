@@ -44,7 +44,7 @@ function initializeClock(id, endtime){
 $(document).ready(function() {
   $(".button-collapse").sideNav();
 
-  var deadline = '2017-02-10T18:00:00Z';
+  var deadline = '2017-04-15T00:00:00Z';
   initializeClock('clock', deadline);
 
   $('#sponsors form').on('submit', function(e) {

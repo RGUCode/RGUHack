@@ -10,8 +10,12 @@ html {
   padding: 0.5rem 0;
 }
 
-#sponsors form .row {
+#sponsors form .row, #register form .row {
   margin-bottom: 0;
+}
+
+#register form input, #register form label {
+  color: white !important;
 }
 
 .organise-logo {
@@ -23,11 +27,12 @@ html {
 }
 
 /* RGUHack Colours */
-.rguhack-navbar-color {
+.rguhack-navbar-color, .rguhack-register-color {
   background-color: #5e266f;
 }
 
 .rguhack-faq-color {
   background-color: #a27cb2;
 }
+
 

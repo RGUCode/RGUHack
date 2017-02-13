@@ -23,5 +23,17 @@ return [
         'address' => 'noreply@rguhack.uk',
       ],
     ],
+
+    // Database
+    'database' => [
+      'driver' => 'mysql',
+      'host' => 'localhost',
+      'database' => 'rguhack',
+      'username' => 'root',
+      'password' => '',
+      'charset'   => 'utf8',
+      'collation' => 'utf8_unicode_ci',
+      'prefix'    => '',
+    ],
   ],
 ];

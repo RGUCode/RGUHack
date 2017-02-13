@@ -21,6 +21,7 @@ $container['log'] = function ($c) {
   return $logger;
 };
 
+// mail
 $container['mail'] = function ($c) {
   $settings = $c->get('settings')['mail'];
 
@@ -28,4 +29,17 @@ $container['mail'] = function ($c) {
   $mailer->setFrom($settings['from']['address'], $settings['from']['name']);
 
   return $mailer;
+};
+
+// database
+$container['db'] = function ($c) {
+  $settings = $c->get('settings')['database'];
+
+  $capsule = new \Illuminate\Database\Capsule\Manager;
+  $capsule->addConnection($settings);
+
+  $capsule->setAsGlobal();
+  $capsule->bootEloquent();
+
+  return $capsule;
 };

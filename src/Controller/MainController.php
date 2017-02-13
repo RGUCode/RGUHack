@@ -60,7 +60,7 @@ class MainController extends Controller {
 
     $mail->isHTML(true);
     $mail->Subject = 'RGUHack Registration';
-    $mail->body = $content->getBody();
+    $mail->Body = $content->getBody();
 
     $sent = $mail->send();
 

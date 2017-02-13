@@ -18,6 +18,7 @@
           <a class="brand-logo" href="#top">RGUHack</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#register">Register</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -26,6 +27,7 @@
             <li><a href="https://www.facebook.com/RGUHack/" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
+            <li><a href="#register">Register</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -70,6 +72,46 @@
         </div>
       </div>
     </div>
+
+    <section id="register" class="rguhack-register-color info-section">
+      <div class="container">
+        <h2 class="white-text center-align">Register</h2>
+        <h5 class="white-text center-align">Are you a student up for a challenge?</h5>
+
+        <p class="white-text center-align">
+        Why not come along to RGUHack and fight your way through 24 hours of hacking?<br />
+        Register your interest in participating in the event using the form below.<br />
+        </p>
+
+        <div class="row">
+          <form class="col s12" action="/register" method="post">
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input class="validate" type="text" name="first_name">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input class="validate" type="text" name="last_name">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input class="validate" type="text" name="place_study">
+                <label for="place_study">College / University</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input class="validate" type="email" name="email">
+                <label for="email">Email Address</label>
+              </div>
+            </div>
+            <div class="row center-align">
+              <button type="submit" class="waves-effect waves-light btn">Submit</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <section class="rguhack-faq-color info-section" id="faq">
       <div class="container">
@@ -133,7 +175,9 @@
       <div class="container">
         <h2 class="center-align">Sponsors</h2>
 
-        <p>If you would like to be a sponsor of RGUHack 2017, leave your details below and a member of the RGUHack team will be in touch.</p>
+        <p class="center-align">
+        If you would like to be a sponsor of RGUHack 2017, leave your details below and a member of the RGUHack team will be in touch.<br />
+        </p>
 
         <div class="row">
           <form class="col s12" action="/sponsor" method="POST">
@@ -173,7 +217,9 @@
                 <label for="website">Website URL</label>
               </div>
             </div>
-            <button type="submit" class="waves-effect waves-light btn">Submit</a>
+            <div class="row center-align">
+              <button type="submit" class="waves-effect waves-light btn">Submit</a>
+            </div>
           </form>
         </div>
       </div>

@@ -6,11 +6,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class MainController extends Controller {
-  public function index(Request $request, Response $response, $args) {
+  public function index(Request $request, Response $response, $args) : Response
+  {
     return $this->ci->view->render($response, 'index.html');
   }
 
-  public function sponsor(Request $request, Response $response, $args) {
+  public function sponsor(Request $request, Response $response, $args) : Response
+  {
     $body = $request->getParsedBody();
     $mail = $this->ci->mail;
 
@@ -21,14 +23,55 @@ class MainController extends Controller {
     $mail->addAddress('info@rguhack.uk', 'RGUHack Team');
 
     // Content
-    $response = $this->ci->view->render($response, 'email.phtml', $body);
+    $content = $this->ci->view->render($response, 'email_sponsor.phtml', $body);
 
     $mail->isHTML(true);
     $mail->Subject = 'Sponsorship Opportunity';
-    $mail->Body = $response->getBody();
+    $mail->Body = $content->getBody();
 
     return $response->withJson([
       'success' => $mail->send(),
+    ]);
+  }
+
+  public function register(Request $request, Response $response, $args) : Response
+  {
+    $body = $request->getParsedBody();
+
+    $this->ci->db->connection()->beginTransaction();
+
+    $this->ci->db->table('student')
+      ->insert([
+        'first_name' => $body['first_name'],
+        'last_name' => $body['last_name'],
+        'place_study' => $body['place_study'],
+        'email' => $body['email'],
+      ]);
+
+    $mail = $this->ci->mail;
+
+    // Headers / To
+    $full_name = $body['first_name'] . ' ' . $body['last_name'];
+
+    $mail->addAddress($body['email'], $full_name);
+    $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
+
+    $content = $this->ci->view->render($response, 'email_register.phtml', $body);
+
+    $mail->isHTML(true);
+    $mail->Subject = 'RGUHack Registration';
+    $mail->body = $content->getBody();
+
+    $sent = $mail->send();
+
+    if ($sent) {
+      $this->ci->db->connection()->commit();
+    } else {
+      $this->ci->db->connection()->rollBack();
+    }
+
+    return $response->withJson([
+      'success' => $sent,
     ]);
   }
 }

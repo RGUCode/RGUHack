@@ -38,6 +38,22 @@ class MainController extends Controller {
   {
     $body = $request->getParsedBody();
 
+    // Check to see if the email has already been added
+    $email = strtolower(trim($body['email']));
+
+    $existing = $this->ci->db->table('student')
+      ->where([
+        'email' => $email,
+      ])
+      ->exists();
+
+    if ($existing) {
+      return $response->withJson([
+        'success' => false,
+      ]);
+    }
+
+    // Put this into a transaction so we don't insert if we haven't sent an email
     $this->ci->db->connection()->beginTransaction();
 
     $this->ci->db->table('student')
@@ -45,7 +61,7 @@ class MainController extends Controller {
         'first_name' => $body['first_name'],
         'last_name' => $body['last_name'],
         'place_study' => $body['place_study'],
-        'email' => $body['email'],
+        'email' => $email,
       ]);
 
     $mail = $this->ci->mail;
@@ -53,7 +69,7 @@ class MainController extends Controller {
     // Headers / To
     $full_name = $body['first_name'] . ' ' . $body['last_name'];
 
-    $mail->addAddress($body['email'], $full_name);
+    $mail->addAddress($email, $full_name);
     $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
     $content = $this->ci->view->render($response, 'email_register.phtml', $body);

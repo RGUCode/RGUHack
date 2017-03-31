@@ -1,5 +1,4 @@
 <?php
-
 namespace Site\Controller;
 
 use Interop\Container\ContainerInterface as Container;

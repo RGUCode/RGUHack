@@ -35,4 +35,28 @@ html {
   background-color: #a27cb2;
 }
 
+/* Sponsor Section */
 
+.sponsor {
+  padding: 2em;
+}
+
+.sponsor img {
+  vertical-align: middle;
+}
+
+.sponsor img:not(:last-of-type) {
+  padding-right: 2em;
+}
+
+.sponsor.alpha img {
+  height: 50px;
+}
+
+.sponsor.beta img {
+  height: 100px;
+}
+
+.sponsor.delta img {
+  height: 150px;
+}

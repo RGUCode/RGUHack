@@ -10,19 +10,25 @@ class TicketController extends Controller
     public function allocate(Request $request, Response $response, $args) : Response
     {
         $user = $request->getAttribute("user");
+        $date_now = date('Y-m-d H:i:s');
 
         // Begin a transaction
         $this->ci->db->connection()->beginTransaction();
 
-        $tickets_available = $this->ci->db->table('tickets')
-            ->where('type', 'rguhack')
-            ->value('amount');
+        $current_ticket = $this->ci->db->table('ticket')
+            ->where([
+                ['start_date', '>=', $date_now],
+                ['end_date', '<=', $date_now],
+            ])
+            ->select('id', 'amount')
+            ->first();
 
         // Check the number of tickets we have allocated
         $number_allocated = $this->ci->db->table('ticket_allocate')
-            ->count('allocate_id');
+            ->where('ticket_id', '=', $current_ticket->id)
+            ->count('id');
 
-        if ($number_allocated == $tickets_available) {
+        if ($number_allocated == $current_ticket->amount) {
             // There are no tickets left
         }
 
@@ -36,8 +42,9 @@ class TicketController extends Controller
 
         $this->ci->db->table('ticket_allocate')
             ->insert([
+                'ticket_id' => $current_ticket->id,
                 'user_id' => $user->id,
-                'date' => date('Y-m-d H:i:s')
+                'date' => $date_now
             ]);
 
         $this->ci->db->connection()->commit();

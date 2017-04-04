@@ -1,4 +1,7 @@
-*.swp
+/vendor/
+/logs/*
+/cache/
+/.idea/
+!/logs/README.md
 composer.lock
-vendor/
-logs/
+*.swp

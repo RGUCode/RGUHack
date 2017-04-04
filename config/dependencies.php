@@ -7,7 +7,14 @@ $container = $app->getContainer();
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
 
-    return new Slim\Views\PhpRenderer($settings['template_path']);
+    $view = new Slim\Views\Twig($settings['template_path'], [
+        'cache' => $settings['cache_path'],
+        'debug' => $settings['debug_mode']
+    ]);
+
+    $view->addExtension(new Slim\Views\TwigExtension($c['router'], $c['request']->getUri()));
+
+    return $view;
 };
 
 // monolog

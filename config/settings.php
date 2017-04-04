@@ -7,6 +7,8 @@ return [
         // Renderer settings
         'view' => [
             'template_path' => __DIR__ . '/../views/',
+            'cache_path' => __DIR__ . '/../cache/',
+            'debug_mode' => true // set to false in production
         ],
 
         // Monolog settings

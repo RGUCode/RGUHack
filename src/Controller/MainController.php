@@ -23,7 +23,7 @@ class MainController extends Controller
         $mail->addAddress('info@rguhack.uk', 'RGUHack Team');
 
         // Content
-        $content = $this->ci->view->render($response, 'email_sponsor.phtml', $body);
+        $content = $this->ci->view->render($response, 'email/sponsor.twig', $body);
 
         $mail->isHTML(true);
         $mail->Subject = 'Sponsorship Opportunity';
@@ -72,7 +72,7 @@ class MainController extends Controller
         $mail->addAddress($email, $full_name);
         $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
-        $content = $this->ci->view->render($response, 'email_register.phtml', $body);
+        $content = $this->ci->view->render($response, 'email/register.twig', $body);
 
         $mail->isHTML(true);
         $mail->Subject = 'RGUHack Registration';

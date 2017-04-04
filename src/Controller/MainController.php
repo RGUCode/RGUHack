@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function index(Request $request, Response $response, $args) : Response
     {
-        return $this->ci->view->render($response, 'index.html');
+        return $this->ci->view->render($response, 'main/index.twig');
     }
 
     public function sponsor(Request $request, Response $response, $args) : Response

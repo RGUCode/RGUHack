@@ -13,11 +13,11 @@ body {
   <body>
     Hello RGUHack Team,<br /><br/>
     My company and I are expressing interest in sponsoring RGUHack.<br />
-    I am a <?php echo $job_title; ?> at <?php echo $company_name; ?>.<br />
-    You can email me at <?php echo $email; ?>.<br />
-    Give me a ring on <?php echo $telephone; ?>.<br />
-    Visit our website <?php echo $website; ?>.<br /><br />
+    I am a {{ job_title }} at {{ company_name }}.<br />
+    You can email me at {{ email }}.<br />
+    Give me a ring on {{ telephone }}.<br />
+    Visit our website {{ website }}.<br /><br />
     Kind regards,<br />
-    <?php echo $first_name; ?> <?php echo $last_name; ?>
+    {{ first_name }} {{ last_name }}
   </body>
 </html>

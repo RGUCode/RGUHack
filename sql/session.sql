@@ -1,4 +1,5 @@
-CREATE TABLE `user` (
+CREATE TABLE `session` (
   `session` char(128) NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

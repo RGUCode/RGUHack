@@ -1,11 +1,12 @@
 <?php
 namespace Site\Controller;
 
-class AuthController extends Controller
+class AuthenticationController extends Controller
 {
     public function register(Request $request, Response $response, $args) : Response
     {
         // TODO: Pull in information from student table
+        $password = password_hash($body['password'], PASSWORD_BCRYPT);
     }
 
     public function login(Request $request, Response $response, $args) : Response
@@ -46,7 +47,6 @@ class AuthController extends Controller
     public function logout(Request $request, Response $response, $args) : Response
     {
         // TODO: Remove the session row from the database
-
         $response = $response->withHeader('Set-Cookie', 'token="";expires=' . date("r", strtotime("-1 day")));
 
         $index_route = $this->ci->router->pathFor('home');

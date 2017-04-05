@@ -1,10 +1,9 @@
 <?php
 namespace Site\Middleware;
 
-use \Interop\Container\ContainerInterface as Container;
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
-use \Illuminate\Support\Collection;
+use Interop\Container\ContainerInterface as Container;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class AuthenticationMiddleware
 {

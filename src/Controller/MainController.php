@@ -90,4 +90,57 @@ class MainController extends Controller
             'success' => $sent,
         ]);
     }
+
+    public function confirm(Request $request, Response $response, $args)
+    {
+        if ($request->isGet()) {
+            $token = $args['token'];
+
+            $student = $this->ci->db->table('student')
+                ->where('token', $token)
+                ->first();
+
+            if ($student != null) {
+                return $this->ci->view->render($response, 'confirm.twig', [
+                    'first_name' => $student->first_name,
+                    'last_name' => $student->last_name,
+                    'token' => $token
+                ]);
+            } else {
+                $response->getBody()
+                    ->write("Could not find the token");
+
+                return $response;
+            }
+        } elseif ($request->isPost()) {
+            $body = $request->getParsedBody();
+
+            // Find the student in the database
+            $student_id = $this->ci->db->table('student')
+                ->where('token', $token)
+                ->value('id');
+
+            $this->ci->db->connection()->beginTransaction();
+
+            if ($student_id != null) {
+                // Found the student, mark them as confirmed
+                $confirmed_count = $this->ci->db->table('student')
+                    ->where('confirmed', 1)
+                    ->count();
+
+                if ($confirmed_count < 70) {
+                    // Only if there is enough tickets (currently 70)
+                    $this->ci->db->table('student')
+                        ->where('id', $student_id)
+                        ->update([
+                            'confirmed' => true // tinyint(1) = 1
+                        ]);
+                }
+            } else {
+                // Could not find the student in the database
+            }
+
+            $this->ci->db->connection()->commit();
+        }
+    }
 }

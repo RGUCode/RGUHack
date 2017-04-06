@@ -10,11 +10,13 @@ html {
   padding: 0.5rem 0;
 }
 
-#sponsors form .row, #register form .row {
+#sponsors form .row,
+#register form .row {
   margin-bottom: 0;
 }
 
-#register form input, #register form label {
+#register form input,
+#register form label {
   color: white !important;
 }
 
@@ -27,7 +29,9 @@ html {
 }
 
 /* RGUHack Colours */
-.rguhack-navbar-color, .rguhack-register-color, .rguhack-timetable-color {
+.rguhack-navbar-color,
+.rguhack-register-color,
+.rguhack-timetable-color {
   background-color: #5e266f;
 }
 
@@ -62,8 +66,6 @@ html {
 }
 
 /* Timetables */
-
-
 .timetable thead {
     border-bottom: none;
 }

@@ -91,7 +91,7 @@ class MainController extends Controller
         ]);
     }
 
-    public function confirm(Request $request, Response $response, $args)
+    public function confirm(Request $request, Response $response, $args) : Response
     {
         if ($request->isGet()) {
             $token = $args['token'];

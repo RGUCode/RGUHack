@@ -6,6 +6,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class TicketController extends Controller
 {
+    public function index(Request $request, Response $response, $args) : Response
+    {
+
+    }
+
     public function allocate(Request $request, Response $response, $args) : Response
     {
         $user = $request->getAttribute("user");

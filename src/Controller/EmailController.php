@@ -17,7 +17,7 @@ class EmailController extends Controller
 
         // Setup email
         $mail->isHTML(true);
-        $mail->Subject = "Confirm you're going!";
+        $mail->Subject = "RGUHack Confirmation";
         $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
         // Loop through each student

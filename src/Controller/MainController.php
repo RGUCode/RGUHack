@@ -93,9 +93,9 @@ class MainController extends Controller
 
     public function confirm(Request $request, Response $response, $args) : Response
     {
-        if ($request->isGet()) {
-            $token = $args['token'];
+        $token = $args['token'];
 
+        if ($request->isGet()) {
             $student = $this->ci->db->table('student')
                 ->where('token', $token)
                 ->first();
@@ -139,7 +139,7 @@ class MainController extends Controller
                         'last_name' => $student->last_name,
                         'email' => $student->email,
                         'password' => $password,
-                        'place_study' => student->place_study,
+                        'place_study' => $student->place_study,
                         'date_birth' => $body['dob'],
                         'dietary' => $body['dietary'],
                         'dinner_choice' => $body['dinner_choice'],

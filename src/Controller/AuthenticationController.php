@@ -3,12 +3,6 @@ namespace Site\Controller;
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request, Response $response, $args) : Response
-    {
-        // TODO: Pull in information from student table
-        $password = password_hash($body['password'], PASSWORD_BCRYPT);
-    }
-
     public function login(Request $request, Response $response, $args) : Response
     {
         if ($request->isPost()) {
@@ -19,7 +13,7 @@ class AuthenticationController extends Controller
                 $body = $request->getParsedBody();
 
                 $user = $this->ci->db->table('user')
-                    ->where('email', '=', strtolower($body['email']))
+                    ->where('email', '=', strtolower(trim($body['email'])))
                     ->select('id', 'password')
                     ->first();
 

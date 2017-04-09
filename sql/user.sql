@@ -5,8 +5,13 @@ CREATE TABLE `user` (
   `email` varchar(256) NOT NULL,
   `password` char(60) NOT NULL,
   `place_study` varchar(200) DEFAULT NULL,
-  `dietary` varchar(500) DEFAULT NULL,
-  `shirt_size` varchar(25) DEFAULT NULL,
   `date_birth` date NOT NULL,
+  -- Food
+  `dietary` varchar(500) DEFAULT NULL,
+  `dinner_choice` varchar(8) DEFAULT NULL,
+  `lunch_choice` varchar(8) DEFAULT NULL,
+  -- Shirt
+  `shirt_size` varchar(8) DEFAULT NULL,
+  `shirt_type` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

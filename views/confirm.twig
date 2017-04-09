@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <form class="col s12" action="{{ path_for('confirm', {'token': token }) }}" method="POST">
+        <form class="col s12" action="{{ path_for('confirm', {'token': token }) }}" method="POST" id="confirm_form">
             <div class="row">
                 <div class="input-field col s6">
                     <input class="datepicker" type="date" name="dob" id="dob" />
@@ -57,11 +57,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" class="validate">
                     <label for="password">Password</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="password" name="password_confirm" id="password_confirm">
+                    <input type="password" name="password_confirm" id="password_confirm" class="validate">
                     <label for="password_confirm">Confirm Password</label>
                 </div>
             </div>
@@ -93,6 +93,12 @@ $(function() {
         selectMonths: true,
         selectYears: 50,
         max: true
+    });
+
+    $('#confirm_form').on('submit', function(e) {
+        if ($('#password_confirm').val() !== $('#password').val()) {
+            e.preventDefault();
+        }
     });
 });
 </script>

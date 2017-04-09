@@ -108,7 +108,7 @@ class MainController extends Controller
                 ]);
             } else {
                 $response->getBody()
-                    ->write("Could not find the token");
+                    ->write("Could not find student in the database");
 
                 return $response;
             }
@@ -128,19 +128,24 @@ class MainController extends Controller
                     ->where('confirmed', 1)
                     ->count();
 
-                if ($confirmed_count < 70) {
-                    // Only if there is enough tickets (currently 70)
-                    $this->ci->db->table('student')
-                        ->where('id', $student_id)
-                        ->update([
-                            'confirmed' => true // tinyint(1) = 1
-                        ]);
-                }
+                // Only if there is enough tickets (currently 70)
+                $this->ci->db->table('student')
+                    ->where('id', $student_id)
+                    ->update([
+                        'confirmed' => true // tinyint(1) = 1
+                    ]);
+
+                $response->getBody()
+                    ->write("You have been confirmed");
             } else {
                 // Could not find the student in the database
+                $response->getBody()
+                    ->write("Could not find student in the database");
             }
 
             $this->ci->db->connection()->commit();
+
+            return $response;
         }
     }
 }

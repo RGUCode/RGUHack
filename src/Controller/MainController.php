@@ -116,23 +116,36 @@ class MainController extends Controller
             $body = $request->getParsedBody();
 
             // Find the student in the database
-            $student_id = $this->ci->db->table('student')
+            $student = $this->ci->db->table('student')
                 ->where('token', $token)
-                ->value('id');
+                ->first();
 
             $this->ci->db->connection()->beginTransaction();
 
-            if ($student_id != null) {
+            if ($student != null) {
                 // Found the student, mark them as confirmed
-                $confirmed_count = $this->ci->db->table('student')
-                    ->where('confirmed', 1)
-                    ->count();
-
-                // Only if there is enough tickets (currently 70)
                 $this->ci->db->table('student')
-                    ->where('id', $student_id)
+                    ->where('id', $student->id)
                     ->update([
                         'confirmed' => true // tinyint(1) = 1
+                    ]);
+
+                // Copy details and new details across
+                $password = password_hash($body['password'], PASSWORD_BCRYPT);
+
+                $this->ci->db->table('user')
+                    ->insert([
+                        'first_name' => $student->first_name,
+                        'last_name' => $student->last_name,
+                        'email' => $student->email,
+                        'password' => $password,
+                        'place_study' => student->place_study,
+                        'date_birth' => $body['dob'],
+                        'dietary' => $body['dietary'],
+                        'dinner_choice' => $body['dinner_choice'],
+                        'lunch_choice' => $body['lunch_choice'],
+                        'shirt_size' => $body['t_type'],
+                        'shirt_type' => $body['t_size'],
                     ]);
 
                 $response->getBody()

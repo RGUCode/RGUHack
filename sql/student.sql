@@ -4,7 +4,7 @@ CREATE TABLE `student` (
   `last_name` varchar(50) DEFAULT NULL,
   `place_study` varchar(200) DEFAULT NULL,
   `email` varchar(256) NOT NULL,
-  `token` char(64) DEFAULT '',
+  `token` char(64) DEFAULT NULL,
   `confirmed` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

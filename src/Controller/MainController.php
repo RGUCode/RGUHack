@@ -97,7 +97,10 @@ class MainController extends Controller
 
         if ($request->isGet()) {
             $student = $this->ci->db->table('student')
-                ->where('token', $token)
+                ->where([
+                    ['token', $token],
+                    ['confirmed', false]
+                ])
                 ->first();
 
             if ($student != null) {
@@ -117,12 +120,15 @@ class MainController extends Controller
 
             // Find the student in the database
             $student = $this->ci->db->table('student')
-                ->where('token', $token)
+                ->where([
+                    ['token', $token],
+                    ['confirmed', false]
+                ])
                 ->first();
 
-            $this->ci->db->connection()->beginTransaction();
-
             if ($student != null) {
+                $this->ci->db->connection()->beginTransaction();
+
                 // Found the student, mark them as confirmed
                 $this->ci->db->table('student')
                     ->where('id', $student->id)
@@ -148,6 +154,8 @@ class MainController extends Controller
                         'shirt_type' => $body['t_size'],
                     ]);
 
+                $this->ci->db->connection()->commit();
+
                 $response->getBody()
                     ->write("You have been confirmed");
             } else {
@@ -155,8 +163,6 @@ class MainController extends Controller
                 $response->getBody()
                     ->write("Could not find student in the database");
             }
-
-            $this->ci->db->connection()->commit();
 
             return $response;
         }

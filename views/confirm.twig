@@ -6,10 +6,12 @@
 
 <div class="container">
     <div class="row">
+        <h3>Welcome back, {{ first_name }}!</h3>
+        <p>Fill in a couple details for us so that you can be confirmed for attending RGUHack</p>
         <form class="col s12" action="{{ path_for('confirm', {'token': token }) }}" method="POST" id="confirm_form">
             <div class="row">
                 <div class="input-field col s6">
-                    <input class="datepicker" type="date" name="dob" id="dob" />
+                    <input class="datepicker" type="date" name="dob" id="dob" class="validate" required/>
                     <label for="dob">Date of Birth</label>
                 </div>
                 <div class="input-field col s6">
@@ -57,17 +59,17 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="password" name="password" id="password" class="validate">
+                    <input type="password" name="password" id="password" class="validate" required />
                     <label for="password">Password</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="password" name="password_confirm" id="password_confirm" class="validate">
+                    <input type="password" name="password_confirm" id="password_confirm" class="validate" required />
                     <label for="password_confirm">Confirm Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
-                    <input type="checkbox" name="confirm" id="confirm_terms" />
+                    <input type="checkbox" name="confirm" id="confirm_terms" class="validate" required />
                     <label for="confirm_terms">I agree to follow and obey the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a></label>
                 </div>
             </div>
@@ -92,7 +94,9 @@ $(function() {
     $('.datepicker').pickadate({
         selectMonths: true,
         selectYears: 50,
-        max: true
+        max: true,
+        formatSubmit: "yyyy-mm-dd",
+        hiddenName: true
     });
 
     $('#confirm_form').on('submit', function(e) {

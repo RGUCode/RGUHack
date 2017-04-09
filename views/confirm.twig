@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <form class="col s12" action="{{ path_for('confirm', {'token': token }) }}">
+        <form class="col s12" action="{{ path_for('confirm', {'token': token }) }}" method="POST">
             <div class="row">
                 <div class="input-field col s6">
                     <input class="datepicker" type="date" name="dob" id="dob" />
@@ -53,6 +53,16 @@
                         <option value="xl">Extra Large</option>
                     </select>
                     <label for="t_size">T-Shirt Size</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="password" name="password" id="password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="password" name="password_confirm" id="password_confirm">
+                    <label for="password_confirm">Confirm Password</label>
                 </div>
             </div>
             <div class="row">

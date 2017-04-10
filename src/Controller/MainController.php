@@ -23,10 +23,10 @@ class MainController extends Controller
         $mail->addAddress('info@rguhack.uk', 'RGUHack Team');
 
         // Content
-        $content = $this->ci->view->render($response, 'email/sponsor.twig', $body);
+        $content = $this->ci->view->fetch('email/sponsor.twig', $body);
 
         $mail->Subject = 'Sponsorship Opportunity';
-        $mail->msgHTML($content->getBody());
+        $mail->msgHTML($content);
 
         return $response->withJson([
             'success' => $mail->send(),
@@ -71,10 +71,10 @@ class MainController extends Controller
         $mail->addAddress($email, $full_name);
         $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
-        $content = $this->ci->view->render($response, 'email/register.twig', $body);
+        $content = $this->ci->view->fetch('email/register.twig', $body);
 
         $mail->Subject = 'RGUHack Registration';
-        $mail->msgHTML($content->getBody());
+        $mail->msgHTML($content);
 
         $sent = $mail->send();
 

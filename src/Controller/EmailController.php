@@ -22,7 +22,7 @@ class EmailController extends Controller
         // Loop through each student
         foreach ($students as $student) {
             // Get token and set it on user account
-            $token = bin2hex(random_bytes(32));
+            $token = bin2hex(random_bytes(16));
 
             $this->ci->db->connection()->beginTransaction();
 
@@ -33,7 +33,7 @@ class EmailController extends Controller
                 ]);
 
             // Generate HTML for email
-            $content = $this->ci->view->render($response, 'email/confirm.twig', [
+            $content = $this->ci->view->fetch('email/confirm.twig', [
                 'first_name' => $student->first_name,
                 'last_name' => $student->last_name,
                 'token' => $token
@@ -42,8 +42,8 @@ class EmailController extends Controller
             // Add to email and set address
             $full_name = $student->first_name + " " + $student->last_name;
 
-            $mail->addAddress($email, $full_name);
-            $mail->msgHTML($content->getBody());
+            $mail->addAddress($student->email, $full_name);
+            $mail->msgHTML($content);
 
             $sent = $mail->send();
 

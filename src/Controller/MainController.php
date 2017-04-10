@@ -146,6 +146,8 @@ class MainController extends Controller
                         'place_study' => $student->place_study,
                         'date_birth' => $body['dob'],
                         'dietary' => $body['dietary'],
+                        'telephone' => $body['telephone'],
+                        'special_needs' => $body['special_needs'],
                         'dinner_choice' => $body['dinner_choice'],
                         'lunch_choice' => $body['lunch_choice'],
                         'shirt_size' => $body['t_type'],

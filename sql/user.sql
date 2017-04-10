@@ -6,6 +6,8 @@ CREATE TABLE `user` (
   `password` char(60) NOT NULL,
   `place_study` varchar(200) DEFAULT NULL,
   `date_birth` date NOT NULL,
+  `telephone` varchar(25) DEFAULT NULL,
+  `special_needs` varchar(500) DEFAULT NULL,
   -- Food
   `dietary` varchar(500) DEFAULT NULL,
   `dinner_choice` varchar(8) DEFAULT NULL,

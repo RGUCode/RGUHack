@@ -9,7 +9,7 @@ class EmailController extends Controller
     public function confirm(Request $request, Response $response, $args) : Response
     {
         $students = $this->ci->db->table('student')
-            ->whereNull('confirm')
+            ->whereNull('token')
             ->select('id', 'first_name', 'last_name', 'email')
             ->get();
 
@@ -32,8 +32,6 @@ class EmailController extends Controller
                     'token' => $token
                 ]);
 
-            $this->ci->db->connection()->commit();
-
             // Generate HTML for email
             $content = $this->ci->view->render($response, 'email/confirm.twig', [
                 'first_name' => $student->first_name,
@@ -48,6 +46,12 @@ class EmailController extends Controller
             $mail->msgHTML($content->getBody());
 
             $sent = $mail->send();
+
+            if ($sent) {
+                $this->ci->db->connection()->commit();
+            } else {
+                $this->ci->db->connection()->rollBack();
+            }
 
             $mail->clearAddresses();
         }

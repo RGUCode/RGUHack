@@ -25,9 +25,8 @@ class MainController extends Controller
         // Content
         $content = $this->ci->view->render($response, 'email/sponsor.twig', $body);
 
-        $mail->isHTML(true);
         $mail->Subject = 'Sponsorship Opportunity';
-        $mail->Body = $content->getBody();
+        $mail->msgHTML($content->getBody());
 
         return $response->withJson([
             'success' => $mail->send(),
@@ -74,9 +73,8 @@ class MainController extends Controller
 
         $content = $this->ci->view->render($response, 'email/register.twig', $body);
 
-        $mail->isHTML(true);
         $mail->Subject = 'RGUHack Registration';
-        $mail->Body = $content->getBody();
+        $mail->msgHTML($content->getBody());
 
         $sent = $mail->send();
 

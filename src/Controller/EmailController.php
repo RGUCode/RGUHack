@@ -16,7 +16,6 @@ class EmailController extends Controller
         $mail = $this->ci->mail;
 
         // Setup email
-        $mail->isHTML(true);
         $mail->Subject = "RGUHack Confirmation";
         $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
@@ -46,7 +45,7 @@ class EmailController extends Controller
             $full_name = $student->first_name + " " + $student->last_name;
 
             $mail->addAddress($email, $full_name);
-            $mail->Body = $content->getBody();
+            $mail->msgHTML($content->getBody());
 
             $sent = $mail->send();
 

@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Instantiate the applcation
+$settings = require __DIR__ . '/../config/settings.php';
+$app = new \Site\Console\Application($settings);
+
+// Set up dependencies
+require __DIR__ . '/../config/dependencies.php';
+
+// Run!
+$app->run();

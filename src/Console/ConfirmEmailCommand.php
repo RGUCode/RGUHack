@@ -1,19 +1,29 @@
 <?php
-namespace Site\Controller;
+namespace Site\Console;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class EmailController extends Controller
+class ConfirmEmailCommand extends BaseCommand
 {
-    public function confirm(Request $request, Response $response, $args) : Response
+    protected function configure()
     {
-        $students = $this->ci->db->table('student')
+        $this
+            ->setName('confirm')
+            ->setDescription('Send out confirmation emails');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $db = $this->container->get('db');
+        $view = $this->container->get('view');
+        $mail = $this->container->get('mail');
+
+        // Pull out all students which have not been given confirmation
+        $students = $db->table('student')
             ->whereNull('token')
             ->select('id', 'first_name', 'last_name', 'email')
             ->get();
-
-        $mail = $this->ci->mail;
 
         // Setup email
         $mail->Subject = "RGUHack Confirmation";
@@ -24,16 +34,16 @@ class EmailController extends Controller
             // Get token and set it on user account
             $token = bin2hex(random_bytes(16));
 
-            $this->ci->db->connection()->beginTransaction();
+            $db->connection()->beginTransaction();
 
-            $this->ci->db->table('student')
+            $db->table('student')
                 ->where('id', $student->id)
                 ->update([
                     'token' => $token
                 ]);
 
             // Generate HTML for email
-            $content = $this->ci->view->fetch('email/confirm.twig', [
+            $content = $view->fetch('email/confirm.twig', [
                 'first_name' => $student->first_name,
                 'last_name' => $student->last_name,
                 'token' => $token
@@ -48,17 +58,14 @@ class EmailController extends Controller
             $sent = $mail->send();
 
             if ($sent) {
-                $this->ci->db->connection()->commit();
+                $db->connection()->commit();
             } else {
-                $this->ci->db->connection()->rollBack();
+                $db->connection()->rollBack();
             }
 
             $mail->clearAddresses();
         }
 
-        $response->getBody()
-            ->write("Sent emails to participants");
-
-        return $response;
+        $output->writeln("Sent emails to participants");
     }
 }

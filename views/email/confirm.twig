@@ -13,7 +13,7 @@ body {
   <body>
     Hello {{ first_name }} {{ last_name }},<br /><br/>
     To confirm that you'll be attending RGUHack we will need you to do so at the following website:
-    <a href="{{ path_for('confirm', { 'token', token }) }}" target="_blank">RGUHack Confirmation</a><br />
+    <a href="{{ path_for('confirm', { 'token' : token }) }}" target="_blank">RGUHack Confirmation</a><br />
     You will only be able to attend and participate if you complete the confirmation.<br /><br />
     See you soon,<br />
     RGUHack Team

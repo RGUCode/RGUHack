@@ -66,6 +66,6 @@ class ConfirmEmailCommand extends BaseCommand
             $mail->clearAddresses();
         }
 
-        $output->writeln("Sent emails to participants");
+        $output->writeln("Sent emails to participants: " . $students->count());
     }
 }

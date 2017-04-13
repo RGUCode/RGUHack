@@ -1,3 +1,5 @@
+{% import 'email/macro.twig' as email %}
+
 {% extends 'email/template.twig' %}
 
 {% block subject %}RGUHack Confirmation{% endblock %}
@@ -12,13 +14,9 @@
         To confirm that you'll be attending RGUHack we will need you to do so at the following website:
     </td>
 </tr>
-<tr>
-    <td style="padding: 10px;">
-        <a class="btn" href="http://www.rguhack.uk/confirm/{{ token }}" style="background-color: #5e266f; color: #ffffff; border-radius: 5px; display: block; padding: 10px; text-align: center; text-decoration:none;">
-            RGUHack Confirmation
-        </a>
-    </td>
-</tr>
+
+{{ email.link("http://www.rguhack.uk/confirm/" ~ token, "RGUHack Confirmation") }}
+
 <tr>
     <td style="padding: 10px; font-size: 16px">
         You will only be able to attend and participate if you complete the confirmation.<br /><br />

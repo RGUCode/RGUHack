@@ -1,0 +1,52 @@
+{% import 'email/macro.twig' as email %}
+
+{% extends 'email/template.twig' %}
+
+{% block title %}Getting ready for RGUHack!{% endblock %}
+
+{% block subject %}RGUHack Preparation{% endblock %}
+
+{% block content %}
+    <tr>
+        <td style="padding: 10px; font-size: 16px">
+            Hello {{ first_name }},<br /><br />
+            With hours left until RGUHack, we thought we would send over a useful email to participants to let them know what they might need to take along with them.<br />
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 10px; font-size: 16px">
+            <div style="font-size: 1.3em; font-weight: 400; padding-bottom: 0.2em;">Hacking Gear</div>
+            Hackers in previous years have brought along laptops and their chargers with them for coding.<br />
+            Take any other chargers that you may need for phones and tablets.<br />
+            You are welcome to take along comfy clothes to code in and be sure to take a second set to freshen up before presentations.<br />
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 10px; font-size: 16px">
+            <div style="font-size: 1.3em; font-weight: 400; padding-bottom: 0.2em;">Transportation</div>
+            RGUHack will be held in the 'Bearpit' in the Sir Ian Wood Building, RGU.<br />
+            If you are looking to take a bus to the venue you can take either the 1 or 2 (First Bus) from Union Street.<br />
+            Parking is available on campus and you will not require a permit or ticket to park.<br />
+            Remember, Google Maps is your friend.
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 10px; font-size: 16px">
+            <div style="font-size: 1.3em; font-weight: 400; padding-bottom: 0.2em;">Anything else?</div>
+            Feel free to get in touch if you would like more information.<br />
+            Be sure to check out the RGUHack Website to see the latest timetable and a countdown until hack!<br />
+        </td>
+    </tr>
+
+    {{ email.link('http://www.rguhack.uk/', 'RGUHack Website') }}
+
+    <tr>
+        <td style="padding: 10px; font-size: 16px">
+            See you soon hackers!<br /><br />
+            RGUHack Team
+        </td>
+    </tr>
+{% endblock %}

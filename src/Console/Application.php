@@ -19,6 +19,7 @@ class Application
     private function initialise()
     {
         $this->console->add(new ConfirmEmailCommand($this->container));
+        $this->console->add(new ParticipantEmailCommand($this->container));
     }
 
     public function getContainer() : ContainerInterface

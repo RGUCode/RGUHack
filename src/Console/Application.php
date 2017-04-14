@@ -21,6 +21,7 @@ class Application
         $this->console->add(new ConfirmEmailCommand($this->container));
         $this->console->add(new ParticipantEmailCommand($this->container));
         $this->console->add(new TicketEmailCommand($this->container));
+        $this->console->add(new TicketGenerateCommand($this->container));
     }
 
     public function getContainer() : ContainerInterface

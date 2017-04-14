@@ -22,7 +22,7 @@ class TicketEmailCommand extends BaseCommand
         $tickets = $db->table('ticket_user')
             ->where('emailed', false)
             ->join('user', 'user.id', '=', 'ticket_user.user_id')
-            ->select('user.first_name', 'user.last_name', 'user.email', 'ticket_user.code')
+            ->select('ticket_user.id', 'user.first_name', 'user.last_name', 'user.email', 'ticket_user.code')
             ->get();
 
         $mail->Subject = "Ticket for RGUHack";
@@ -30,6 +30,12 @@ class TicketEmailCommand extends BaseCommand
 
         foreach ($tickets as $ticket) {
             $db->connection()->beginTransaction();
+
+            $db->table('ticket_user')
+                ->where('id', '=', $ticket->id)
+                ->update([
+                    'emailed' => true
+                ]);
 
             // Generate HTML for email
             $content = $view->fetch('email/ticket.twig', [

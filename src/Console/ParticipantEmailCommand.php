@@ -68,6 +68,7 @@ class ParticipantEmailCommand extends BaseCommand
 
                 // Check if this is a test run, do not send if test
                 if ($test != null) {
+                    $count++;
                     continue;
                 }
 

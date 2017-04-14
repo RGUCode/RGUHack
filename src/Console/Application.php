@@ -20,6 +20,7 @@ class Application
     {
         $this->console->add(new ConfirmEmailCommand($this->container));
         $this->console->add(new ParticipantEmailCommand($this->container));
+        $this->console->add(new TicketEmailCommand($this->container));
     }
 
     public function getContainer() : ContainerInterface

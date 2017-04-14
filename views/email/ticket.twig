@@ -1,0 +1,29 @@
+{% extends 'email/template.twig' %}
+
+{% block subject %}Ticket for RGUHack{% endblock %}
+
+{% block title %}You're going to RGUHack!{% endblock %}
+
+{% block content %}
+
+    <tr>
+        <td style="font-size: 20px;">
+            Hello {{ first_name }} {{ last_name }},<br /><br />
+            Below we've attached your ticket that you'll need for the event.<br />
+            So please, either print this off or take it along with you on yout phone<br />
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px; text-align: center;">
+            <img src="{{ qrcode_data_uri(code, { size: 200, quiet_zone: 2 }) }}" /><br /><br />
+            Code: {{ code }}
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">
+            See you soon hacker!<br /><br />
+            RGUHack Team
+        </td>
+    </tr>
+
+{% endblock %}

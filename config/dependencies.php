@@ -13,6 +13,7 @@ $container['view'] = function ($c) {
     ]);
 
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $c['request']->getUri()));
+    $view->addExtension(new Endroid\QrCode\Bundle\Twig\Extension\QrCodeExtension());
 
     return $view;
 };

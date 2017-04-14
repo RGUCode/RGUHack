@@ -1,7 +1,9 @@
 <?php
 namespace Site\Console;
 
+use Endroid\QrCode\QrCode;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class TicketEmailCommand extends BaseCommand
@@ -10,7 +12,8 @@ class TicketEmailCommand extends BaseCommand
     {
         $this
             ->setName('ticket')
-            ->setDescription('Send out ticket emails');
+            ->setDescription('Send out ticket emails')
+            ->addOption('print', 'p', InputOption::VALUE_NONE, 'Used for printing output');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -19,8 +22,10 @@ class TicketEmailCommand extends BaseCommand
         $view = $this->container->get('view');
         $mail = $this->container->get('mail');
 
+        $print = $input->getOption('print');
+
         $tickets = $db->table('ticket_user')
-            ->where('emailed', false)
+            ->where('ticket_user.emailed', false)
             ->join('user', 'user.id', '=', 'ticket_user.user_id')
             ->select('ticket_user.id', 'user.first_name', 'user.last_name', 'user.email', 'ticket_user.code')
             ->get();
@@ -28,7 +33,32 @@ class TicketEmailCommand extends BaseCommand
         $mail->Subject = "Ticket for RGUHack";
         $mail->addReplyTo('info@rguhack.uk', 'RGUHack Team');
 
+        $count = 0;
+
         foreach ($tickets as $ticket) {
+            $qrcode = new QrCode($ticket->code);
+            $qrcode->setSize(300);
+
+            // Generate HTML for email
+            $content = $view->fetch('email/ticket.twig', [
+                'first_name' => $ticket->first_name,
+                'last_name' => $ticket->last_name,
+                'code' => $ticket->code,
+                'qr_code' => $qrcode->getDataUri()
+            ]);
+
+            if ($print != null) {
+                $output->writeln($content);
+            }
+
+            // Add to email and set address
+            $full_name = $ticket->first_name + " " + $ticket->last_name;
+
+            $mail->addAddress($ticket->email, $full_name);
+            $mail->msgHTML($content);
+
+            $sent = $mail->send();
+
             $db->connection()->beginTransaction();
 
             $db->table('ticket_user')
@@ -37,28 +67,16 @@ class TicketEmailCommand extends BaseCommand
                     'emailed' => true
                 ]);
 
-            // Generate HTML for email
-            $content = $view->fetch('email/ticket.twig', [
-                'first_name' => $ticket->first_name,
-                'last_name' => $ticket->last_name,
-                'code' => $ticket->code
-            ]);
-
-            // Add to email and set address
-            $full_name = $student->first_name + " " + $student->last_name;
-
-            $mail->addAddress($ticket->email, $full_name);
-            $mail->msgHTML($content);
-
-            $sent = $mail->send();
-
             if ($sent) {
                 $db->connection()->commit();
+                $count++;
             } else {
                 $db->connection()->rollBack();
             }
 
             $mail->clearAddresses();
         }
+
+        $output->writeln("Tickets sent to " . $count . " participants");
     }
 }

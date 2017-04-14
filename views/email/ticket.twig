@@ -7,20 +7,20 @@
 {% block content %}
 
     <tr>
-        <td style="font-size: 20px;">
+        <td style="padding: 10px; font-size: 16px;">
             Hello {{ first_name }} {{ last_name }},<br /><br />
             Below we've attached your ticket that you'll need for the event.<br />
-            So please, either print this off or take it along with you on yout phone<br />
+            Either print this off or take it along with you on your phone!<br />
         </td>
     </tr>
     <tr>
-        <td style="font-size: 20px; text-align: center;">
-            <img src="{{ qrcode_data_uri(code, { size: 200, quiet_zone: 2 }) }}" /><br /><br />
-            Code: {{ code }}
+        <td style="padding: 10px; font-size: 18px; text-align: center;">
+            <img src="{{ qr_code }}" /><br />
+            {{ code }}<br />
         </td>
     </tr>
     <tr>
-        <td style="font-size: 20px;">
+        <td style="padding: 10px font-size: 16px;">
             See you soon hacker!<br /><br />
             RGUHack Team
         </td>
